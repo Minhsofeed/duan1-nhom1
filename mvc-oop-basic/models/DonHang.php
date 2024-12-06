@@ -95,6 +95,15 @@ class DonHang extends Connect
         
         return isset($result['so_khach_hang']) ? $result['so_khach_hang'] : 0;
     }
-
+    public function soSanPhamBanDuoc()
+    {
+        $sql = "SELECT SUM(so_luong) AS so_san_pham_ban FROM chi_tiet_gio_hangs";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Kiểm tra nếu không có kết quả
+        return isset($result['so_san_pham_ban']) ? $result['so_san_pham_ban'] : 0;
+    }
+    
    
 }
