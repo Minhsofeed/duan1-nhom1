@@ -1,4 +1,4 @@
-<?php include '../views/admin/layout/header.php' ?>
+<?php include '../views/admin/layout/header.php'; ?>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -43,7 +43,6 @@
                                                                         <th scope="col">SDT Người Nhận</th>
                                                                         <th scope="col">Địa Chỉ</th>
                                                                         <th scope="col">Ngày Đặt</th>
-                                                                        <th scope="col">Tổng Tiền</th>
                                                                         <th scope="col">Trạng Thái</th>
                                                                         <th scope="col">Thao tác</th>
                                                                     </tr>
@@ -56,8 +55,7 @@
                                                                             <td><?= $dh['ten_nguoi_nhan'] ?></td>
                                                                             <td><?= $dh['sdt_nguoi_nhan'] ?></td>
                                                                             <td><?= $dh['dia_chi_nguoi_nhan'] ?></td>
-                                                                            <td><?= $dh['ngay_dat'] ?></td>
-                                                                            <td><?= $dh['tong_tien'] ?></td>
+                                                                            <td><?= date('d/m/Y', strtotime($dh['ngay_dat'])) ?></td>
                                                                             <td><?= $dh['ten_trang_thai'] ?></td>
                                                                             <td>
                                                                                 <div class="form-check form-switch">
@@ -71,34 +69,6 @@
                                                             </table>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                                <div class="gridjs-footer d-flex justify-content-between align-items-center">
-                                                    <!-- Phần tóm tắt -->
-                                                    <div class="gridjs-summary" role="status" aria-live="polite" title="Page 1 of 2">
-                                                        Showing <b>1</b> to <b>10</b> of <b>12</b> results
-                                                    </div>
-
-                                                    <!-- Phần phân trang -->
-                                                    <nav aria-label="Page navigation">
-                                                        <ul class="pagination mb-0">
-                                                            <!-- Nút Previous -->
-                                                            <li class="page-item disabled">
-                                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                                            </li>
-                                                            <!-- Trang 1 -->
-                                                            <li class="page-item active" aria-current="page">
-                                                                <a class="page-link" href="#">1</a>
-                                                            </li>
-                                                            <!-- Trang 2 -->
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="#">2</a>
-                                                            </li>
-                                                            <!-- Nút Next -->
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="#">Next</a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
                                                 </div>
                                             </div>
                                         </div>

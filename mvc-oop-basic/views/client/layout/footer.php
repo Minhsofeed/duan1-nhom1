@@ -9,23 +9,25 @@
                             <a href="#"><img src="client/client/client/assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <div class="footer_contact">
-                            <p>Chúng tôi là một nhóm thiết kế và lập trình</p>
-                            <p><span>Địa Chỉ</span>Nam Từ Liêm,Hà Nội</p>
-                            <p><span>Cần Trợ Giúp</span>Liên Hệ: <a href="tel:1-800-345-6789">1-800-345-6789</a></p>
+                            <p>We are a team of designers and developers that
+                                create high quality Magento, Prestashop, Opencart...</p>
+                            <p><span>Address</span> 4710-4890 Breckinridge St, UK Burlington, VT 05401</p>
+                            <p><span>Need Help?</span>Call: <a href="tel:1-800-345-6789">1-800-345-6789</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="widgets_container widget_menu">
-                        <h3>Thông Tin</h3>
+                        <h3>Information</h3>
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="about.html">Về Chúng Tôi</a></li>
-                                <li><a href="#">Thông Tin Giao Hàng</a></li>
-                                <li><a href="privacy-policy.html">Chính Sách Bảo Mật</a></li>
-                                <li><a href="#">Điều khoản & Điều kiện</a></li>
-                                <li><a href="#">Quay lại</a></li>
-                                <li><a href="#">Quà Tặng</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="privacy-policy.html">privacy policy</a></li>
+                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Gift Certificates</a></li>
                             </ul>
                         </div>
                     </div>
@@ -35,24 +37,24 @@
                         <h3>Extras</h3>
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="#">Quay lại</a></li>
-                                <li><a href="#">Lịch Sử Giao Dich</a></li>
-                                <li><a href="wishlist.html">Danh sách mong muốn</a></li>
-                                <li><a href="#">Bản Tin</a></li>
-                                <li><a href="#">Liên Kết</a></li>
-                                <li><a href="#">Đặc Biệt</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Order History</a></li>
+                                <li><a href="wishlist.html">Wish List</a></li>
+                                <li><a href="#">Newsletter</a></li>
+                                <li><a href="#">Affiliate</a></li>
+                                <li><a href="#">Specials</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="widgets_container">
-                        <h3>Đăng Ký Để Nhận Được thông báo</h3>
-                        <p>Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba.</p>
+                        <h3>Newsletter Subscribe</h3>
+                        <p>We’ll never share your email address with a third-party.</p>
                         <div class="subscribe_form">
                             <form id="mc-form" class="mc-form footer-newsletter">
-                                <input id="mc-email" type="email" autocomplete="off" placeholder="Điền Email của bạn vào đây..." />
-                                <button id="mc-submit">Đăng Ký</button>
+                                <input id="mc-email" type="email" autocomplete="off" placeholder="Enter you email address here..." />
+                                <button id="mc-submit">Subscribe</button>
                             </form>
                             <!-- mailchimp-alerts Start -->
                             <div class="mailchimp-alerts text-centre">
@@ -111,19 +113,14 @@
 <!-- Main JS -->
 <script src="client/assets/js/main.js"></script>
 
-
-
-</body>
-
 <?php
-// Kiểm tra nếu session có thông báo thành công
 if (isset($_SESSION['success'])) {
     echo "<script>
                     Toastify({
                         text: '{$_SESSION['success']}',
                         style: {
                             background: 'rgba(0, 128, 0, 0.7)', 
-                            fontSize: '18px', 
+                            fontSize: '15px', 
                             width: '250px', 
                             height: '60px',  
                         },
@@ -139,7 +136,7 @@ if (isset($_SESSION['errors'])) {
                         text: '{$_SESSION['errors']}',
                         style: {
                             background: 'rgba(255, 0, 0, 0.7)',
-                            fontSize: '18px',
+                            fontSize: '15px',
                             width: '250px', 
                             height: '60px',  
                         },
@@ -149,6 +146,5 @@ if (isset($_SESSION['errors'])) {
     unset($_SESSION['errors']);
 }
 ?>
-<!-- Mirrored from htmldemo.net/autima/autima/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Nov 2024 09:08:19 GMT -->
-
+</body>
 </html>

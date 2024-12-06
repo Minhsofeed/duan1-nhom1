@@ -16,9 +16,7 @@
                 <div class="col-lg-12">
                     <div class="text-center mt-sm-5 mb-4 text-white-50">
                         <div>
-                            <a href="index.html" class="d-inline-block auth-logo">
-                                <img src="admin/assets/images/g1.png" alt="" height="200">
-                            </a>
+                            <img src="admin/assets/images/logo-light.png" alt="" height="20">
                         </div>
                     </div>
                 </div>

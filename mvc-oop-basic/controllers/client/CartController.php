@@ -43,7 +43,6 @@ class CartController extends Cart
                 $chiTietGioHang = $this->getDetailGioHang($gioHang['id']);
                 foreach ($chiTietGioHang as $detail) {
                     if ($detail['san_pham_id'] == $san_pham_id) {
-                        // Nếu sản phẩm đã có, cập nhật số lượng
                         $newSoLuong = $detail['so_luong'] + $so_luong;
                         $this->updateSoLuong($gioHang['id'], $san_pham_id, $newSoLuong);
                         $checkSanPham = true;
@@ -126,14 +125,13 @@ class CartController extends Cart
             }
             include '../views/client/cart/checkOut.php';
         } else {
-            header('Location: index.php?act=dang-nhap');
+            header('Location: index.php?act=signin');
         }
     }
 
     public function postCheckOut()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $ten_nguoi_nhan = $_POST['ten_nguoi_nhan'];
             $email_nguoi_nhan = $_POST['email_nguoi_nhan'];
             $sdt_nguoi_nhan = $_POST['sdt_nguoi_nhan'];
@@ -145,22 +143,46 @@ class CartController extends Cart
             $ngay_dat = date('Y-m-d');
             $trang_thai_id = 1;
 
-
+            // Tạo mã đơn hàng
             $ma_don_hang = 'GB-' . rand(1000, 9999);
 
             $user = $this->getTaiKhoanFromEmail($_SESSION['user']['email']);
             $tai_khoan_id = $user['id'];
 
-            $check = $this->addDonHang($tai_khoan_id, $ten_nguoi_nhan, $email_nguoi_nhan, $sdt_nguoi_nhan, $dia_chi_nguoi_nhan, $ghi_chu, $tong_tien, $phuong_thuc_thanh_toan_id, $ngay_dat, $ma_don_hang, $trang_thai_id);
+            // Thêm đơn hàng vào cơ sở dữ liệu
+            $check = $this->addDonHang(
+                $tai_khoan_id,
+                $ten_nguoi_nhan,
+                $email_nguoi_nhan,
+                $sdt_nguoi_nhan,
+                $dia_chi_nguoi_nhan,
+                $ghi_chu,
+                $tong_tien,
+                $phuong_thuc_thanh_toan_id,
+                $ngay_dat,
+                $ma_don_hang,
+                $trang_thai_id
+            );
+
             if ($check) {
-                $_SESSION['success'] = 'Mua Hàng Thành Công';
-                if (isset($_SESSION['user'])) {
-                    $mail = $_SESSION['user'];
-                    $gioHang = $this->getGioHangFromUser($mail['id']);
-                    $gioHangid = $gioHang['id'];
-                    $deleteGioHang = $this->deleteGioHang($gioHang['id']);
+                $donHang = $this->getDonHangByMaDonHang($ma_don_hang);
+                $don_hang_id = $donHang['id'];
+                $gioHang = $this->getGioHangFromUser($tai_khoan_id);
+                if ($gioHang) {
+                    $chiTietGioHang = $this->getDetailGioHang($gioHang['id']);
+                    foreach ($chiTietGioHang as $chiTiet) {
+                        $this->addDetailDonHang(
+                            $don_hang_id,
+                            $chiTiet['san_pham_id'],
+                            $chiTiet['gia_khuyen_mai'],
+                            $chiTiet['so_luong'],
+                            $chiTiet['gia_khuyen_mai'] * $chiTiet['so_luong']
+                        );
+                    }
+                    $this->deleteGioHang($gioHang['id']);
                 }
-                header('Location: index.php');
+                $_SESSION['success'] = 'Mua Hàng Thành Công';
+                header('Location: index.php?act=/');
                 exit;
             } else {
                 $_SESSION['error'] = 'Thanh Toán Thất Bại';
@@ -172,12 +194,21 @@ class CartController extends Cart
     public function getListHisDonHang()
     {
         $id = $_SESSION['user']['id'];
-        try {
-            $listAllDonHang = $this->listHisDonHang($id);
-            include '../views/client/profile/profile.php';
-        } catch (Exception $e) {
-            // Xử lý lỗi nếu có
-            echo "Lỗi: " . $e->getMessage();
+        $listAllDonHang = $this->getListDonHangUser($id);
+        include '../views/client/profile/profile.php';
+    }
+
+    public function cancelDonHang()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['don_hang_id'];
+            $trang_thai_id = 10;
+            $stasus = $this->destroyDonHangUser($id, $trang_thai_id);
+            if ($stasus) {
+                header('Location:' . $_SERVER['HTTP_REFERER']);
+            } else {
+                header('Location:' . $_SERVER['HTTP_REFERER']);
+            }
         }
     }
 }

@@ -30,7 +30,7 @@
     <link href="admin/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="admin/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-    
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
@@ -97,12 +97,12 @@
                             <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo ($_SESSION['user']['ho_ten']); ?></span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"> <?php echo ($_SESSION['user']['ho_ten']); ?></span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="?act=profile"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Thông Tin Cá Nhân</span></a>
+                                <a class="dropdown-item" href="?act=admin-user"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Chi Tiết Cá Nhân</span></a>
                                 <a class="dropdown-item" href="?act=logout-admin"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Đăng Xuất</span></a>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                         <img src="admin/assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="admin/assets/images/g1.png" alt="" height="150">
+                        <img src="admin/assets/images/logo-dark.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -128,7 +128,7 @@
                         <img src="admin/assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="admin/assets/images/g1.png" alt="" height="150">
+                        <img src="admin/assets/images/logo-light.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
@@ -152,24 +152,22 @@
                                 <i class="ri-xbox-fill"></i> <span data-key="t-dashboards">Danh Mục</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="index.php?act=san-pham">
                                 <i class="ri-money-cny-box-line"></i> <span data-key="t-dashboards">Sản Phẩm</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="index.php?act=don-hang">
                                 <i class="ri-article-line"></i> <span data-key="t-dashboards">Đơn Hàng</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="index.php?act=list-admin">
-                                <i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Tài Khoản Admin</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="index.php?act=list-khach-hang">
-                                <i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Tài Khoản Khách Hàng</span>
+                                <i class="ri-account-circle-line"></i> <span data-key="t-dashboards">Tài Khoản</span>
                             </a>
                         </li>
                     </ul>

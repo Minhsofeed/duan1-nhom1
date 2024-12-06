@@ -25,39 +25,43 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
-        
-        <?php
-            // Kiểm tra nếu session có thông báo thành công
-            if (isset($_SESSION['success'])) {
-                echo "<script>
-                    Toastify({
-                        text: '{$_SESSION['success']}',
-                        style: {
-                            background: 'green',
-                        },
-                        duration: 3000
-                    }).showToast();
-                </script>";
-                unset($_SESSION['success']); 
-            }
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo "<script>
+                Toastify({
+                    text: '{$_SESSION['success']}',
+                    style: {
+                        background: 'rgba(0, 128, 0, 0.7)', 
+                        fontSize: '18px', 
+                        width: '250px', 
+                        height: '60px',  
+                    },
+                    duration: 3000
+                }).showToast();
+            </script>";
+        unset($_SESSION['success']);
+    }
 
-            // Kiểm tra nếu session có thông báo lỗi
-            if (isset($_SESSION['errors'])) {
-                echo "<script>
-                    Toastify({
-                        text: '{$_SESSION['errors']}',
-                        style: {
-                            background: 'red',
-                        },
-                        duration: 3000
-                    }).showToast();
-                </script>";
-                unset($_SESSION['errors']); 
-            }
-            ?>
+    if (isset($_SESSION['errors'])) {
+        // Convert the array to a string, escape special characters for safety
+        $errorMessages = htmlspecialchars(implode(', ', $_SESSION['errors']));
 
-</body>
+        echo "<script>
+                Toastify({
+                    text: '{$errorMessages}',
+                    style: {
+                        background: 'rgba(255, 0, 0, 0.7)',
+                        fontSize: '18px',
+                        width: '250px', 
+                        height: '60px',  
+                    },
+                    duration: 3000
+                }).showToast();
+            </script>";
+        unset($_SESSION['errors']);
+    }
+    ?>
 
+    </body>
 
-<!-- Mirrored from themesbrand.com/velzon/html/corporate/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Nov 2024 14:33:39 GMT -->
-</html>
+    </html>

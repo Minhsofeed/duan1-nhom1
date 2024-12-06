@@ -103,42 +103,4 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form[action="?act=comment-processing&san_pham_id=<?= ($_GET['san_pham_id']); ?>"]');
-        if (form) {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(form);
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', form.action, true);
-                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.success) {
-                            const reviewList = document.querySelector('.review-list');
-                            const newReview = document.createElement('div');
-                            newReview.classList.add('review-item', 'mb-4', 'p-3', 'border', 'rounded', 'bg-white', 'shadow-sm');
-                            newReview.innerHTML = `
-                                <div class="review-header d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="m-0"><?= $_SESSION['user']['ho_ten']; ?></h5>
-                                    <p class="mb-0 text-muted"><small>${new Date().toLocaleDateString()}</small></p>
-                                </div>
-                                <div class="review-content">
-                                    <p class="m-0">${formData.get('comment')}</p>
-                                </div>
-                            `;
-                            reviewList.appendChild(newReview);
-                            form.reset();
-                        }
-                    } else {
-                        alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
-                    }
-                };
-                xhr.send(formData);
-            });
-        }
-    });
-</script>
 <?php include '../views/client/layout/footer.php'; ?>

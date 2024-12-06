@@ -89,7 +89,6 @@ if (empty($_SESSION['user'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                     </form>
                                 </div>
 

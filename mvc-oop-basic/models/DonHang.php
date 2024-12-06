@@ -67,43 +67,4 @@ class DonHang extends Connect
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute([$trang_thai_id, $id]);
     }
-    public function tongDoanhThu()
-    {
-        $sql = 'SELECT SUM(tong_tien) as tong_doanh_thu FROM don_hangs';
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return isset($result['tong_doanh_thu']) ? $result['tong_doanh_thu'] : 0;
-    }
-
-    public function soDonHang()
-    {
-        $sql = "SELECT COUNT(*) AS so_don_hang FROM don_hangs";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-     
-        return isset($result['so_don_hang']) ? $result['so_don_hang'] : 0;
-    }
-
-    public function soKhachHang()
-    {
-        $sql = "SELECT COUNT(*) AS so_luong_khach_hang FROM tai_khoans WHERE chuc_vu_id = 2;";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        return isset($result['so_khach_hang']) ? $result['so_khach_hang'] : 0;
-    }
-    public function soSanPhamBanDuoc()
-    {
-        $sql = "SELECT SUM(so_luong) AS so_san_pham_ban FROM chi_tiet_gio_hangs";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // Kiểm tra nếu không có kết quả
-        return isset($result['so_san_pham_ban']) ? $result['so_san_pham_ban'] : 0;
-    }
-    
-   
 }

@@ -120,7 +120,7 @@ if (empty($_SESSION['user'])) {
                 let total = quantity * unitPrice;
                 $rowTotal.text(number_format(total));
             }
-
+            
             let totalCart = 0;
             $('.tong-tien').each(function() {
                 let rowTotal = parseFloat($(this).text().replaceAll('.', '').replace(',', '.'));

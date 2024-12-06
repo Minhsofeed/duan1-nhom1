@@ -1,143 +1,147 @@
-<?php include '../views/admin/layout/header.php' ?>
+<?php include '../views/admin/layout/header.php'; ?>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
 
-            <!-- start page title -->
+            <!-- Page Title -->
             <div class="row">
                 <div class="col-12">
+                    <h3 class="page-title">Quản Lý Đơn Hàng - Mã Đơn Hàng: <?= $donHang['ma_don_hang'] ?></h3>
                 </div>
             </div>
 
+            <!-- Content Wrapper -->
             <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-10">
-                                <h3>Quản Lý Danh Sách Đơn Hàng-Đơn Hàng:<?= $donHang['ma_don_hang'] ?></h3>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <!-- Main Content -->
                 <section class="content">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
                                 <?php
-                                if ($donHang['trang_thai_id'] == 1) {
-                                    $colorAlerts = 'primary';
-                                } else if ($donHang['trang_thai_id'] >= 2 && $donHang['trang_thai_id'] <= 9) {
-                                    $colorAlerts = 'warning';
-                                } else if ($donHang['trang_thai_id'] == 10) {
-                                    $colorAlerts = 'success';
-                                } else {
-                                    $colorAlerts = 'primary';
-                                }
+                                $colorAlerts = match (true) {
+                                    $donHang['trang_thai_id'] == 1 => 'primary',
+                                    $donHang['trang_thai_id'] >= 2 && $donHang['trang_thai_id'] <= 9 => 'warning',
+                                    $donHang['trang_thai_id'] == 10 => 'success',
+                                    default => 'primary',
+                                };
                                 ?>
                                 <div class="alert alert-<?= $colorAlerts ?>" role="alert">
-                                    Đơn Hàng: <?= $donHang['ten_trang_thai'] ?>
+                                    Trạng Thái: <?= $donHang['ten_trang_thai'] ?>
                                 </div>
-                                <!-- Main content -->
-                                <div class="invoice p-3 mb-3">
-                                    <!-- title row -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>
-                                                <i class="fas fa-server"></i> Shop Quần áo đá bóng và giày
-                                                <small class="float-right">Ngày Đặt: <?= ($donHang['ngay_dat']) ?></small>
-                                            </h4>
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-                                    <!-- info row -->
-                                    <div class="row invoice-info">
-                                        <div class="col-sm-4 invoice-col">
-                                            <h6 style="color: blue;"><strong>Thông tin người đặt</strong></h6>
-                                            <address>
-                                                <strong><?= $donHang['ho_ten'] ?></strong><br>
-                                                Email: <?= $donHang['email'] ?><br>
-                                                SĐT: <?= $donHang['so_dien_thoai'] ?> <br>
-                                            </address>
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4 invoice-col">
-                                            <h6 style="color: blue;"><strong>Thông tin người nhận</strong></h6>
-                                            <address>
-                                                <strong><?= $donHang['ten_nguoi_nhan'] ?></strong><br>
-                                                Email: <?= $donHang['email_nguoi_nhan'] ?><br>
-                                                SĐT: <?= $donHang['sdt_nguoi_nhan'] ?><br>
-                                                Địa Chỉ: <?= $donHang['dia_chi_nguoi_nhan'] ?><br>
-                                            </address>
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4 invoice-col">
-                                            <h6 style="color: blue;"><strong>Mã Đơn Hàng:<?= $donHang['ma_don_hang'] ?></strong><br></h6>
-                                            <address>
-                                                Tổng Tiền: <?= $donHang['tong_tien'] ?><br>
-                                                Ghi Chú: <?= $donHang['ghi_chu'] ?><br>
-                                                Thanh Toán: <?= $donHang['ten_phuong_thuc'] ?><br>
-                                            </address>
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-                                    <!-- /.row -->
 
-                                    <!-- Table row -->
-                                    <div class="row">
-                                        <div class="col-12 table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>STT</th>
-                                                        <th>Tên Sản Phẩm</th>
-                                                        <th>Ảnh</th>
-                                                        <th>Đơn Giá</th>
-                                                        <th>Số Lượng</th>
-                                                        <th>Thành Tiền</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $tong_tien = 0; ?>
-                                                    <?php foreach ($sanPhamDonHang as $key => $sanPham) : ?>
-                                                        <tr>
-                                                            <td><?= $key + 1 ?></td>
-                                                            <td><?= $sanPham['ten_san_pham'] ?></td>
-                                                            <td><?= $sanPham['hinh_anh'] ?></td>
-                                                            <td><?= $sanPham['don_gia'] ?></td>
-                                                            <td><?= $sanPham['so_luong'] ?></td>
-                                                            <td><?= $sanPham['thanh_tien'] ?></td>
-                                                        </tr>
-                                                        <?php $tong_tien += $sanPham['thanh_tien'] ?>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- /.col -->
+                                <!-- Order Details and Customer Info Section -->
+                                <div class="row">
+                                    <!-- Column 1: Thông Tin Đơn Hàng -->
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered mb-4">
+                                            <thead>
+                                                <tr class="table-primary">
+                                                    <th colspan="2">Thông Tin Đơn Hàng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Mã Đơn Hàng</th>
+                                                    <td><?= $donHang['ma_don_hang'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ngày Đặt</th>
+                                                    <td><?= $donHang['ngay_dat'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tổng Tiền</th>
+                                                    <td><?= number_format($donHang['tong_tien'], 0, ',', '.') ?> VND</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Thanh Toán</th>
+                                                    <td><?= $donHang['ten_phuong_thuc'] ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <!-- /.row -->
 
+                                    <!-- Column 2: Thông Tin Người Đặt -->
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered mb-4">
+                                            <thead>
+                                                <tr class="table-primary">
+                                                    <th colspan="2">Thông Tin Người Đặt</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Họ Tên</th>
+                                                    <td><?= $donHang['ho_ten'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <td><?= $donHang['email'] ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>SĐT</th>
+                                                    <td><?= $donHang['so_dien_thoai'] ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Products Table -->
+                                <div class="row">
                                     <div class="col-12">
-                                        <div class="col-6">
-                                            <div class="table-responsive">
-                                                <table class="table">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr class="table-primary">
+                                                    <th>STT</th>
+                                                    <th>Tên Sản Phẩm</th>
+                                                    <th>Ảnh</th>
+                                                    <th>Đơn Giá</th>
+                                                    <th>Số Lượng</th>
+                                                    <th>Thành Tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $tong_tien = 0; ?>
+                                                <?php foreach ($sanPhamDonHang as $key => $sanPham): ?>
                                                     <tr>
-                                                        <th>Thành Tiền:</th>
-                                                        <td>
-                                                            <?= $tong_tien ?>
-                                                        </td>
+                                                        <td><?= $key + 1 ?></td>
+                                                        <td><?= $sanPham['ten_san_pham'] ?></td>
+                                                        <td><img src="./images/category<?= $sanPham['hinh_anh']; ?>" width="100"></td>
+                                                        <td><?= number_format($sanPham['don_gia'], 0, ',', '.') ?> VND</td>
+                                                        <td><?= $sanPham['so_luong'] ?></td>
+                                                        <td><?= number_format($sanPham['thanh_tien'], 0, ',', '.') ?> VND</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>Vận Chuyển:</th>
-                                                        <td>30000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Tổng Tiền:</th>
-                                                        <td style="color: red;"><?= $tong_tien + 30000 ?></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                    <?php $tong_tien += $sanPham['thanh_tien']; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Summary Table -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="table-primary">
+                                                    <th colspan="2">Tổng Hợp</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Thành Tiền</th>
+                                                    <td><?= number_format($tong_tien, 0, ',', '.') ?> VND</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Vận Chuyển</th>
+                                                    <td>30,000 VND</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tổng Cộng</th>
+                                                    <td class="text-danger"><strong><?= number_format($tong_tien + 30000, 0, ',', '.') ?> VND</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -148,16 +152,17 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> © Velzon.
+                    </script> © Shop Quần áo & Giày Đá Bóng.
                 </div>
             </div>
         </div>
     </footer>
 </div>
-<?php include '../views/admin/layout/footer.php' ?>
+<?php include '../views/admin/layout/footer.php'; ?>

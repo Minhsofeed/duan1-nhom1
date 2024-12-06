@@ -27,7 +27,7 @@ class Cart extends connect
         }
     }
 
-
+    // Lấy chi tiết giỏ hàng
     public function getDetailGioHang($id)
     {
         try {
@@ -48,7 +48,7 @@ class Cart extends connect
         }
     }
 
-  
+    // Thêm mới giỏ hàng
     public function addGioHang($id)
     {
         try {
@@ -60,6 +60,7 @@ class Cart extends connect
         }
     }
 
+    // Cập nhật số lượng sản phẩm trong giỏ hàng
     public function updateSoLuong($gio_hang_id, $san_pham_id, $so_luong)
     {
         try {
@@ -75,7 +76,7 @@ class Cart extends connect
         }
     }
 
-  
+    // Thêm sản phẩm vào chi tiết giỏ hàng
     public function addDetailGioHang($gio_hang_id, $san_pham_id, $so_luong)
     {
         try {
@@ -150,7 +151,68 @@ class Cart extends connect
             echo "Lỗi" . $e->getMessage();
         }
     }
-    
 
-    
+    public function addDetailDonHang($don_hang_id, $san_pham_id, $don_gia, $so_luong, $thanh_tien)
+    {
+        try {
+            $sql = 'INSERT INTO chi_tiet_don_hangs (don_hang_id, san_pham_id, don_gia, so_luong ,thanh_tien) VALUES (?, ?, ?,?,?)';
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$don_hang_id, $san_pham_id, $don_gia, $so_luong, $thanh_tien]);
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function getDonHangByMaDonHang($ma_don_hang)
+    {
+        try {
+            $sql = 'SELECT * FROM don_hangs WHERE ma_don_hang = ?';
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$ma_don_hang]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function getListDonHangUser($tai_khoan_id)
+    {
+        try {
+            $sql = 'SELECT
+                    don_hangs.*,
+                    chi_tiet_don_hangs.so_luong,
+                    san_phams.ten_san_pham,
+                    trang_thai_don_hangs.ten_trang_thai
+                FROM
+                    don_hangs
+                LEFT JOIN chi_tiet_don_hangs 
+                    ON don_hangs.id = chi_tiet_don_hangs.don_hang_id
+                LEFT JOIN san_phams 
+                    ON chi_tiet_don_hangs.san_pham_id = san_phams.id
+                LEFT JOIN trang_thai_don_hangs 
+                    ON trang_thai_don_hangs.id = don_hangs.trang_thai_id
+                WHERE 
+                    don_hangs.tai_khoan_id = ?';
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$tai_khoan_id]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+
+    public function destroyDonHangUser($id, $trang_thai_id)
+    {
+        try {
+            
+            $sql = 'UPDATE don_hangs SET trang_thai_id = ? WHERE id = ?';
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$trang_thai_id, $id]); 
+            return true;
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            return false;
+        }
+    }
 }

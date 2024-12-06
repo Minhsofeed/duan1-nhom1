@@ -1,4 +1,4 @@
-<?php include '../views/admin/layout/header.php' ?>
+<?php include '../views/admin/layout/header.php'; ?>
 <div class="main-content">
 
     <div class="page-content">
@@ -8,58 +8,82 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Chỉnh Sửa Sản Phẩm </h4>
-
+                        <h4 class="mb-sm-0">Cập Nhật Trạng Thái Đơn Hàng </h4>
                     </div>
                 </div>
             </div>
-            <!-- end page title -->
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="order-details" role="tabpanel">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên Người Nhận</label>
+                                                <input type="text" class="form-control" placeholder="Nhập tên người nhận" value="<?= $donHang['ten_nguoi_nhan'] ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Số Điện Thoại</label>
+                                                <input type="text" class="form-control" placeholder="Nhập số điện thoại" value="<?= $donHang['sdt_nguoi_nhan'] ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" placeholder="Nhập email" value="<?= $donHang['email_nguoi_nhan'] ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Địa Chỉ</label>
+                                                <input type="text" class="form-control" placeholder="Nhập địa chỉ" value="<?= $donHang['dia_chi_nguoi_nhan'] ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Phương thức thanh toán</label>
+                                                <input type="text" class="form-control" placeholder="Nhập Phương Thức Thanh Toán"
+                                                    value="<?= $donHang['phuong_thuc_thanh_toan_id'] == 1 ? 'Ship COD' : 'Thanh Toán Online' ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ghi Chú</label>
+                                                <textarea class="form-control" placeholder="Nhập ghi chú" disabled rows="4"><?= $donHang['ghi_chu'] ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <!-- end tab content -->
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+            </div>
+            <!-- end order details -->
             <form method="POST" action="?act=update-don-hang">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
+                                    <div class="tab-pane active" id="update-order-status" role="tabpanel">
                                         <div class="row align-items-center">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Tên Người Nhận</label>
-                                                    <input type="text" class="form-control" name="name" placeholder="Nhập tên người nhận" value="<?= $donHang['ten_nguoi_nhan'] ?>" disabled>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Số Điện Thoại</label>
-                                                    <input type="text" class="form-control" name="so_dien_thoai" placeholder="Nhập số điện thoại" value="<?= $donHang['sdt_nguoi_nhan'] ?>" disabled>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="email" placeholder="Nhập email" value="<?= $donHang['email_nguoi_nhan'] ?>" disabled>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Địa Chỉ</label>
-                                                    <input type="text" class="form-control" name="dia_chi" placeholder="Nhập địa chỉ" value="<?= $donHang['dia_chi_nguoi_nhan'] ?>" disabled>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phương thức thanh toán</label>
-                                                    <input type="text" class="form-control" name="phuong_thuc_thanh_toan" placeholder="Nhập Phương Thức Thanh Toán"
-                                                        value="<?= $donHang['phuong_thuc_thanh_toan_id'] == 1 ? 'Ship COD' : 'Thanh Toán Online' ?>" disabled>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
+                                            <!-- Trạng Thái Đơn Hàng section -->
+                                            <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Trạng Thái Đơn Hàng</label>
                                                     <input type="hidden" name="id_don_hang" value="<?= $don_hang_id ?>">
@@ -75,13 +99,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Ghi Chú</label>
-                                                    <textarea class="form-control" name="ghi_chu" placeholder="Nhập ghi chú" disabled rows="4"><?= $donHang['ghi_chu'] ?></textarea>
-                                                </div>
-                                            </div>
                                         </div>
                                         <!-- end row -->
                                     </div>
@@ -92,7 +109,6 @@
                         </div>
                         <!-- end card -->
                         <div class="text-end mb-3">
-                            <a href="index.php?act=don-hang" class="btn btn-primary">Quay Lại</a>
                             <button type="submit" name="edit-don-hang" class="btn btn-secondary w-sm">Cập Nhật</button>
                         </div>
                     </div>
