@@ -3,11 +3,10 @@
 <div class="customer_login mt-32">
     <div class="container">
         <div class="row">
-            <!--register area start-->
             <div class="col-lg-12 col-md-12">
                 <div class="account_form register">
-                    <h2 class="text-center">Đăng Nhập</h2> <!-- Canh giữa tiêu đề -->
-                    <form action="?act=dang-nhap" method="POST">
+                    <h2 class="text-center">Đăng Nhập</h2>
+                    <form action="?act=signin" method="POST">
                         <p>
                             <label>Nhập Email <span></span></label>
                             <input type="text" name="email" class="form-control">
@@ -16,7 +15,7 @@
                     <?php endif; ?>
                     </p>
                     <p>
-                        <label>Nhập Password <span>*</span></label>
+                        <label>Nhập Password</label>
                         <input type="password" name="password" class="form-control">
                         <?php if (isset($_SESSION['errors']['password'])): ?>
                     <p class="text-danger"><?= htmlspecialchars($_SESSION['errors']['password']) ?></p>
@@ -28,7 +27,6 @@
                     </form>
                 </div>
             </div>
-            <!--register area end-->
         </div>
     </div>
 </div>

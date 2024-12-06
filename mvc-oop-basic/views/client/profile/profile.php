@@ -31,7 +31,11 @@
                                 <table class="table table-bordered">
                                     <thead class="table-dark">
                                         <tr>
+                                            <th>STT</th>
                                             <th>Đơn Hàng</th>
+                                            <th>Tên Người Nhận</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Số Lượng</th>
                                             <th>Ngày Đặt</th>
                                             <th>Trạng Thái</th>
                                             <th>Tổng Tiền</th>
@@ -40,27 +44,40 @@
                                     </thead>
                                     <tbody>
                                         <?php if (!empty($listAllDonHang)) : ?>
-                                            <?php foreach ($listAllDonHang as $donHang) :
-                                            ?>
+                                            <?php foreach ($listAllDonHang as $key => $donHang) : ?>
+
                                                 <tr>
+                                                    <td><?= $key + 1 ?></td>
                                                     <td><?= $donHang['ma_don_hang'] ?></td>
+                                                    <td><?= $donHang['ten_nguoi_nhan'] ?></td>
+                                                    <td><?= $donHang['ten_san_pham'] ?></td>
+                                                    <td><?= $donHang['so_luong'] ?></td>
                                                     <td><?= (new DateTime($donHang['ngay_dat']))->format('d/m/Y') ?></td>
-                                                    <td><?= $donHang['trang_thai_id'] ?></td>
+                                                    <td><?= $donHang['ten_trang_thai'] ?></td>
                                                     <td><?= number_format($donHang['tong_tien'], 0, ',', '.') ?>₫</td>
                                                     <td>
-                                                        <a href="?act=huy-don&ma_don_hang=<?= $donHang['ma_don_hang'] ?>" class="btn btn-sm btn-primary">Hủy Đơn</a>
+                                                        <?php if ($donHang['trang_thai_id'] != 10): ?>
+                                                            <form action="?act=cancel-order" method="POST">
+                                                                <input type="hidden" name="don_hang_id" value="<?= $donHang['id'] ?>">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Hủy Đơn</button>
+                                                            </form>
+                                                        <?php else: ?>
+                                                            <button class="btn btn-secondary btn-sm" disabled>Hủy Đơn</button>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
+
                                             <?php endforeach; ?>
                                         <?php else : ?>
                                             <tr>
-                                                <td colspan="5" class="text-center">Không có đơn hàng nào.</td>
+                                                <td colspan="7" class="text-center">Không có đơn hàng nào.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
 
                         <!-- Account Details Tab -->
                         <div class="tab-pane fade" id="account-details">

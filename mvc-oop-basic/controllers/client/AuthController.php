@@ -1,9 +1,10 @@
 <?php
-require_once '../models/Auth.php';
+require_once '../models/Taikhoan.php';
 class AuthController extends Auth
 {
     public function resgister()
     {
+        
         if (
             $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])
         ) {
@@ -24,11 +25,10 @@ class AuthController extends Auth
                 header('Location:?act=signin');
                 exit();
             }
-
             $resgister = $this->register($_POST['name'], $_POST['email'], $_POST['password']);
             if ($resgister) {
                 $_SESSION['success'] = 'Tạo tài khoản thành công.Vui lòng đăng nhập';
-                header('Location:?act=dang-nhap');
+                header('Location:?act=signin');
                 exit();
             } else {
                 $_SESSION['error'] = 'Tạo tài khoản không thành công';
@@ -60,22 +60,23 @@ class AuthController extends Auth
                 exit();
             }
 
-            $login = $this->auth($_POST['email'], $_POST['password']);
+            $login = $this->login($_POST['email'], $_POST['password']);
             if ($login) {
                 $_SESSION['user'] = $login;
                 $_SESSION['success'] = 'Đăng Nhập Thành Công';
-                header('Location:index.php?act=trang-chu');
+                header('Location:index.php');
             } else {
                 $_SESSION['error'] = 'Đăng Nhập Thất Bại';
                 header('Location:' . $_SERVER['HTTP_REFERER']);
             }
             exit();
         }
-        include '../views/client/auth/login.php';
+        if (isset($_GET['admin'])) {
+            include '../views/admin/auth/login.php';
+        } else {
+            include '../views/client/auth/login.php';
+        }
     }
-
-
-   
 
     public function logout()
     {
@@ -83,9 +84,10 @@ class AuthController extends Auth
             session_unset();
             session_destroy();
         }
-        header("Location: ?act=trang-chu");
+        header("Location: ?act=signin");
         exit();
     }
+
     public function updatePassword()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

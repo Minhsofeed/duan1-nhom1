@@ -4,7 +4,8 @@ class ProfileController extends Taikhoan
 {
     public function updateProfie()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update-profile'])) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            var_dump($_POST);
             $errors = [];
             if (empty($_POST['ho_ten'])) $errors['ho_ten'] = 'Vui Lòng Không Trống Bỏ Trường Này';
             if (empty($_POST['email'])) $errors['email'] = 'Vui Lòng Không  Bỏ Trống Trường Này';

@@ -2,20 +2,26 @@
 require_once '../models/SanPham.php';
 class SanPhamController extends SanPham
 {
-    public function showSanPhamClient()
+
+    public function index()
     {
+        $danhMuc = $this->getDanhMuc();
+        $filterProduct = $this->showSanPham();
         $showSanPhamClient = $this->showSanPham();
         include '../views/client/home/home.php';
     }
     public function getDetailSanPhamClient($id)
     {
+        $danhMuc = $this->getDanhMuc();
         $showDetailSanPhamClient = $this->detailsSanPhan($id);
+        $showDetatilBinhLuanSanPham = $this->getBinhLuanFromSanPham($id);
         if ($showDetailSanPhamClient) {
             include '../views/client/product/detail.php';
         } else {
             echo "Sản phẩm không tồn tại.";
         }
     }
+
     public function commentProcessing()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -42,5 +48,17 @@ class SanPhamController extends SanPham
             exit;
         }
         include '../views/client/product/detail.php';
+    }
+
+    public function getDetailBinhLuanFromTaiKhoan($id)
+    {
+        $san_pham_id = $_GET['san_pham_id'];
+        $this->getBinhLuanFromSanPham($san_pham_id);
+    }
+    public function filterProduct()
+    {
+        $danhMuc = $this->getDanhMuc();
+        $filterProduct = $this->showSanPham();
+        include '../views/client/home/category.php';
     }
 }

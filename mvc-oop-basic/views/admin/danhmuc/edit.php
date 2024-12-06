@@ -1,4 +1,4 @@
-<?php include '../views/admin/layout/header.php' ?>
+<?php include '../views/admin/layout/header.php'; ?>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-            <form id="editCategoryForm" method="POST" action="index.php?act=edit-danh-muc&id=<?= $getDanhMuc['id'] ?>">
+            <form method="POST" action="?act=edit-danh-muc&id=<?= $getDanhMuc['id'] ?>">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -40,7 +40,7 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Mô tả</label>
-                                                    <textarea class="form-control" name="mo_ta" placeholder="Nhập mô tả" rows="4" required><?= $getDanhMuc['mo_ta'] ?></textarea>
+                                                    <textarea class="form-control" name="mo_ta" placeholder="Nhập mô tả" rows="4"><?= $getDanhMuc['mo_ta'] ?></textarea>
                                                 </div>
                                                 <?php if (isset($_SESSION['errors']['mo_ta'])): ?>
                                                     <p class="text-danger"><?= $_SESSION['errors']['mo_ta'] ?></p>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="text-end mb-3">
                             <a href="index.php?act=danh-muc" class="btn btn-primary">Quay lại</a>
-                            <button type="submit" class="btn btn-secondary" name="edit-danh-muc">Cập nhật</button>
+                            <button type="submit" class="btn btn-secondary">Cập nhật</button>
                         </div>
                     </div>
                 </div>
@@ -61,4 +61,4 @@
         </div>
     </div>
 </div>
-<?php include '../views/admin/layout/footer.php' ?>
+<?php include '../views/admin/layout/footer.php'; ?>
