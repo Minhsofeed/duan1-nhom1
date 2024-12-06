@@ -17,7 +17,7 @@ class Auth extends connect
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['mat_khau'])) {
+        if ($user && $user['chuc_vu_id'] == 1 && password_verify($password, $user['mat_khau'])) {
             return $user;
         }
         return false;
@@ -44,5 +44,17 @@ class Auth extends connect
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
         }
+    }
+    public function auth($email, $password)
+    {
+        $sql = "SELECT * FROM tai_khoans WHERE email=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if ($user  && password_verify($password, $user['mat_khau'])) {
+            return $user;
+        }
+        return false;
     }
 }
