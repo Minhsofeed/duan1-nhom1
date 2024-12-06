@@ -57,8 +57,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Giá sản phẩm</label>
-                                                    <input type="number" class="form-control" name="gia_san_pham" placeholder="Nhập giá Sản Phẩm">
+                                                    <label class="form-label"> Giá Khuyến Mại</label>
+                                                    <input type="number" class="form-control" name="gia_san_pham" placeholder="Nhập giá khuyến mại">
                                                     <?php if(isset($_SESSION['errors']['gia_san_pham'])): ?>
                                                     <p class="text-danger"><?= $_SESSION['errors']['gia_san_pham'] ?></p>
                                                 <?php endif; ?>
@@ -66,8 +66,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Giá Khuyến Mãi</label>
-                                                    <input type="number" class="form-control" name="gia_khuyen_mai"  placeholder="Nhập giá khuyến Mãi">
+                                                    <label class="form-label">Giá sản phẩm </label>
+                                                    <input type="number" class="form-control" name="gia_khuyen_mai"  placeholder="Nhập giá sản phẩm ">
                                                 </div>
                                             </div>
 

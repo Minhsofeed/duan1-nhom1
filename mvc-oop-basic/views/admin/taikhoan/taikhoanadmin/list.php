@@ -84,10 +84,7 @@
                                                                             <td>
                                                                                 <div class="form-check form-switch">
                                                                                     <!-- Nút sửa -->
-                                                                                    <a href="index.php?act=edit-admin&id=<?= $ad['id']; ?>"
-                                                                                        class="btn btn-primary">
-                                                                                        <i class="ri-settings-fill"></i>
-                                                                                    </a>
+                                                                                   
 
 
                                                                                     <form action="index.php?act=cam-admin" method="post" style="display:inline;">
