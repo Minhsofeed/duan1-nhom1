@@ -60,7 +60,12 @@ if (empty($_SESSION['user'])) {
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Giá Khuyến Mãi</label>
+                                                    <input type="number" class="form-control" name="gia_khuyen_mai" placeholder="Nhập giá khuyến Mãi">
+                                                </div>
+                                            </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Giá sản phẩm</label>
@@ -71,12 +76,7 @@ if (empty($_SESSION['user'])) {
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Giá Khuyến Mãi</label>
-                                                    <input type="number" class="form-control" name="gia_khuyen_mai" placeholder="Nhập giá khuyến Mãi">
-                                                </div>
-                                            </div>
+                                           
 
                                             <div class="col-lg-6">
                                                 <div class="mb-3">

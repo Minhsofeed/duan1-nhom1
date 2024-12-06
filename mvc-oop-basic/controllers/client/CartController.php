@@ -202,8 +202,8 @@ class CartController extends Cart
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['don_hang_id'];
-            $trang_thai_id = 10;
-            $stasus = $this->destroyDonHangUser($id, $trang_thai_id);
+            
+            $stasus = $this->destroyDonHangUser($id, 10);
             if ($stasus) {
                 header('Location:' . $_SERVER['HTTP_REFERER']);
             } else {

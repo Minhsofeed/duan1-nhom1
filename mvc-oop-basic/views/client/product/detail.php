@@ -7,7 +7,7 @@
             <div class="col-lg-4 col">
                 <div class="product-image">
                     <div id="img-1" class="zoomWrapper single-zoom">
-                        <img src="./images/category<?= $showDetailSanPhamClient['hinh_anh']; ?>" width="400px" height="600px" style="object-fit: cover; display: block; margin: 0 auto;" />
+                        <img src="./images/category/<?= $showDetailSanPhamClient['hinh_anh']; ?>" width="400px" height="600px" style="object-fit: cover; display: block; margin: 0 auto;" />
                     </div>
 
                 </div>

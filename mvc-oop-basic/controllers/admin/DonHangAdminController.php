@@ -37,4 +37,14 @@ class DonHangAdminController extends DonHang
             }
         }
     }
+    public function thongKe(){
+        $tongDoanhThu = $this->tongDoanhThu();
+        
+        $soKhachHang = $this->soKhachHang();
+      
+        $soDonHang = $this->soDonHang();
+        $soSanPhamBanDuoc = $this->soSanPhamBanDuoc();
+        include '../views/admin/index.php';
+    }
+  
 }

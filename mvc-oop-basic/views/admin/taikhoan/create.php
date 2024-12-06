@@ -48,7 +48,7 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Số điện thoại</label>
-                                                    <input type="tel" class="form-control" name="so_dien_thoai" placeholder="Nhập số điện thoại" required>
+                                                    <input type="number" class="form-control" name="so_dien_thoai" placeholder="Nhập số điện thoại" >
                                                     <?php if (isset($_SESSION['errors']['so_dien_thoai'])): ?>
                                                         <p class="text-danger"><?= $_SESSION['errors']['so_dien_thoai'] ?></p>
                                                     <?php endif; ?>

@@ -17,22 +17,43 @@
         </div>
     </div>
 </div>
-<section class="slider_section color_scheme_2  mb-42">
+<section class="slider_section color_scheme_2 mb-42">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="slider_area slider_three owl-carousel">
-                    <div class="single_slider d-flex align-items-center" data-bgimg="client/assets/img/slider/slider7.jpg">
-                        <div class="slider_content">
-                            <h2>GM 10 & 12</h2>
-                            <h1>Bolt Rear Disc Brake Conversions</h1>
-                            <a class="button" href="shop.html">shopping now</a>
-                        </div>
-                    </div>
+                <!-- Slider với một ảnh duy nhất -->
+                <div class="slider">
+                    <img id="slideImage" src="client/assets/img/slider/slide13.jpg">
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        let images = [
+            'client/assets/img/slider/slide13.jpg',
+            'client/assets/img/slider/slide33.png',
+            'client/assets/img/slider/slide21.jpg'
+        ];
+
+
+        let currentIndex = 0;
+        let slideImage = document.getElementById('slideImage');
+
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+
+            slideImage.style.opacity = 0;
+
+
+            setTimeout(() => {
+                slideImage.src = images[currentIndex];
+                slideImage.style.opacity = 1;
+            }, 1000);
+        }
+
+        setInterval(changeImage, 3000);
+    </script>
 </section>
 <div class="shop_area shop_fullwidth">
     <div class="container">
@@ -60,7 +81,7 @@
                                 </div>
                                 <div class="product_thumb">
                                     <a class="primary_img" href="?act=detail-pro&san_pham_id=<?= $sp['id'] ?>">
-                                        <img src="./images/category<?= $sp['hinh_anh']; ?>" alt="<?= $sp['ten_san_pham']; ?>" class="img-fluid">
+                                        <img src="./images/category/<?= $sp['hinh_anh']; ?>" alt="<?= $sp['ten_san_pham']; ?>" class="img-fluid">
                                     </a>
                                 </div>
                                 <div class="product_content grid_content">

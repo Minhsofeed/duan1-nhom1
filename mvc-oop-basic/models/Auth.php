@@ -16,21 +16,30 @@ class Auth extends connect
 
     public function login($email, $password)
     {
-        try {
-            $sql = "SELECT * FROM tai_khoans WHERE email=?";
-            $stmt = $this->connect()->prepare($sql);
-            $stmt->execute([$email]);
-            $user = $stmt->fetch();
+        $sql = "SELECT * FROM tai_khoans WHERE email=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
 
-            if ($user && password_verify($password, $user['mat_khau'])) {
-                return $user;
-            }
-            return false;
-        } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
+        if ($user && $user['chuc_vu_id'] == 1 && password_verify($password, $user['mat_khau'])) {
+            return $user;
         }
+        return false;
     }
+    public function auth($email, $password)
+    {
+        $sql = "SELECT * FROM tai_khoans WHERE email=?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
 
+        if ($user && $user['chuc_vu_id'] == 1 && password_verify($password, $user['mat_khau'])) {
+            return $user;
+        }
+        return false;
+    }
+  
+   
     public function getUserById($id)
     {
         try {

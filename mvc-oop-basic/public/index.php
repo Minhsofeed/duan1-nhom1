@@ -23,9 +23,13 @@ $GioHang = new CartController();
 $Search = new SearchController();
 switch ($action) {
     case 'admin':
-        include '../views/admin/index.php';
+        
+        $AuthAmin->middleware();
+        $DonHangAdmin->thongKe();
+       
         break;
     case 'admin-user':
+        $AuthAmin->middleware();
         include '../views/admin/profie/info.php';
         break;
     case "login":
@@ -33,24 +37,31 @@ switch ($action) {
         break;
         //Đơn Hàng
     case 'don-hang':
+        $AuthAmin->middleware();
         $DonHangAdmin->index();
         break;
     case 'chi-tiet-don-hang':
+        $AuthAmin->middleware();
         $DonHangAdmin->detailDonHang();
         break;
     case 'edit-don-hang':
+        $AuthAmin->middleware();
         $DonHangAdmin->getIdDonHang();
         break;
     case "update-don-hang":
+        $AuthAmin->middleware();
         $DonHangAdmin->updateDonHang();
         //Danh Mục
     case 'danh-muc':
+        $AuthAmin->middleware();
         $DanhmucAdmin->index();
         break;
     case 'them-danh-muc':
+        $AuthAmin->middleware();
         $DanhmucAdmin->createDanhMuc();
         break;
     case 'edit-danh-muc':
+        $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
         if ($id) {
@@ -61,6 +72,7 @@ switch ($action) {
         }
         break;
     case 'xoa-danh-muc':
+        $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         if ($id) {
             $DanhmucAdmin->deleteDanhMuc($id);
@@ -71,13 +83,16 @@ switch ($action) {
 
         //////Sản Phẩm
     case 'san-pham':
+        $AuthAmin->middleware();
         $SanphamAdmin->index();
         break;
     case 'them-san-pham':
+        $AuthAmin->middleware();
         $SanphamAdmin->createSanPham();
         break;
 
     case 'detail-san-pham':
+        $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         if ($id) {
             $SanphamAdmin->detailSanPham($id);
@@ -88,6 +103,7 @@ switch ($action) {
         break;
 
     case 'edit-san-pham':
+        $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         if ($id) {
             $SanphamAdmin->suaSanPham($id);
@@ -97,6 +113,7 @@ switch ($action) {
         }
         break;
     case 'xoa-san-pham';
+    $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         if ($id) {
             $SanphamAdmin->deleteSanPham($id);
@@ -113,10 +130,12 @@ switch ($action) {
         }
         break;
     case 'list-admin':
+        $AuthAmin->middleware();
         $TaikhoanAdmin->index();
         break;
 
     case 'cam-admin':
+        $AuthAmin->middleware();
         $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
         $trang_thai = isset($_POST['trang_thai']) ? (int)$_POST['trang_thai'] : null;
 
@@ -132,6 +151,7 @@ switch ($action) {
         break;
 
     case 'them-admin':
+         $AuthAmin->middleware();
         $TaikhoanAdmin->createAddmin();
         break;
         ///////Client

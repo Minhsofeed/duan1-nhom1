@@ -56,7 +56,7 @@ class TaiKhoanAdminController extends Taikhoan
          $hashed_password = password_hash($_POST['mat_khau'], PASSWORD_DEFAULT);
 
          if (move_uploaded_file($file['tmp_name'], './images/avatar/' . $anh_dai_dien)) {
-            $addAdmin = $this->addAddmin(
+           $addAdmin = $this->addAddmin(
                $_POST['ho_ten'],
                $anh_dai_dien,
                $_POST['ngay_sinh'],
@@ -65,8 +65,7 @@ class TaiKhoanAdminController extends Taikhoan
                $_POST['gioi_tinh'],
                $_POST['dia_chi'],
                $hashed_password,
-               $_POST['chuc_vu_id'],
-               $_POST['trang_thai']
+              
             );
             if ($addAdmin) {
                $_SESSION['success'] = 'Thêm admin thành công';
@@ -75,8 +74,10 @@ class TaiKhoanAdminController extends Taikhoan
             } else {
                $_SESSION['errors'] = 'Thêm admin thất bại. Mời nhập lại.';
             }
+          
          }
       }
+    
       include '../views/admin/taikhoan/create.php';
    }
    

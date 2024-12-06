@@ -11,19 +11,19 @@ class Taikhoan extends connect
       $stmt->execute();
       return $stmt->fetchAll();
     } catch (Exception $e) {
-      // Handle error (e.g., log it or display a user-friendly message)
+    
       echo 'Lỗi: ' . $e->getMessage();
     }
   }
-
   public function addAddmin($ho_ten, $anh_dai_dien, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $mat_khau)
   {
     $sql = "INSERT INTO tai_khoans(ho_ten, anh_dai_dien, ngay_sinh, email, so_dien_thoai, gioi_tinh, dia_chi, mat_khau, chuc_vu_id, trang_thai) 
               VALUES (?, ?,?, ?, ?, ?, ?, ?, 1, 1)";
     $stmt = $this->connect()->prepare($sql);
+
     return $stmt->execute([$ho_ten, $anh_dai_dien, $ngay_sinh, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $mat_khau]);
   }
-
+   
   public function editAdmin($id, $ho_ten, $anh_dai_dien, $email, $so_dien_thoai, $gioi_tinh, $dia_chi, $mat_khau)
   {
     $sql = 'UPDATE tai_khoans SET ho_ten = ?, anh_dai_dien = ? , email = ? , so_dien_thoai = ? , gioi_tinh = ? , dia_chi = ? , mat_khau =?  WHERE id = ?';

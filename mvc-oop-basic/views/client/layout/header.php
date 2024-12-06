@@ -100,7 +100,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="index.php"><img src="client/assets/img/logo/logo.png" alt=""></a>
+                            <a href="index.php"><img src="client/assets/img/logo/g1.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">

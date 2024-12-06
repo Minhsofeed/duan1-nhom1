@@ -34,7 +34,7 @@ if (empty($_SESSION['user'])) {
                                         </a>
                                     </td>
                                     <td>
-                                        <img src="./images/category<?= $sp['hinh_anh']; ?>" width="100">
+                                        <img src="./images/category/<?= $sp['hinh_anh']; ?>" width="100">
                                     </td>
                                     <td><?= $sp['ten_san_pham'] ?></td>
                                     <td class="gia-san-pham" data-price="<?= $sp['gia_khuyen_mai'] ?: $sp['gia_san_pham'] ?>">

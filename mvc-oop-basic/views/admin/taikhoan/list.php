@@ -72,10 +72,10 @@
                                                                         <td><?= $key + 1 ?></td>
                                                                         <td><?= $ad['ho_ten']; ?></td>
                                                                         <td>
-                                                                            <img src="./images/avataradmin<?= $ad['anh_dai_dien']; ?>"
+                                                                            <img src="./images/avatar/<?= $ad['anh_dai_dien']; ?>"
                                                                                 width="100">
                                                                         </td>
-                                                                        <td><?= date('d-m-Y', strtotime($ad['ngay_sinh'])); ?></td>
+                                                                        <td><?= ($ad['ngay_sinh']); ?></td>
                                                                         <td><?= $ad['so_dien_thoai']; ?></td>
                                                                         <td><?= $ad['gioi_tinh'] == 0 ? 'Nữ' : 'Nam'; ?></td>
                                                                         <td><?= $ad['dia_chi']; ?></td>
