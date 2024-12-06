@@ -21,8 +21,8 @@ $GioHang = new CartController();
 $AuthAmin = new AuthControllerAdmin();
 switch ($action) {
     case 'admin':
-     
-      $AuthAmin->middleware();
+        $DonHangAdmin->thongKe();
+        $AuthAmin->middleware();
         break;
     case "login":
         $AuthAmin->logins();
@@ -56,7 +56,7 @@ switch ($action) {
         }
         break;
     case 'xoa-san-pham';
-    $AuthAmin->middleware();
+        $AuthAmin->middleware();
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         if ($id) {
             $SanphamAdmin->deleteSanPham($id);
@@ -137,7 +137,7 @@ switch ($action) {
         $DonHangAdmin->index();
         break;
     case 'chi-tiet-don-hang':
-      
+
         $DonHangAdmin->detailDonHang();
         break;
     case 'edit-don-hang':
@@ -150,7 +150,7 @@ switch ($action) {
     case 'trang-chu':
         $SanPhamClient->showSanPhamClient();
         break;
-      
+
     case 'dang-ky':
         $AuthClient->resgister();
         break;
@@ -178,9 +178,9 @@ switch ($action) {
     case 'tai-khoan-ca-nhan':
         include '../views/client/profile/profile.php';
         break;
-        case 'profile':
-            include '../views/admin/profie/info.php';
-            break;
+    case 'profile':
+        include '../views/admin/profie/info.php';
+        break;
     case 'update-ca-nhan':
         $Profile->updateProfie();
         break;
@@ -214,24 +214,12 @@ switch ($action) {
         $GioHang->checkOut();
         break;
 
-    case 'payment-processing':
-        $GioHang->postCheckOut();
-        break;
-    case ' cam-binh-luan':
-        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-        $trang_thai = isset($_POST['trang_thai']) ? (int)$_POST['trang_thai'] : null;
-
-        if ($id && in_array($trang_thai, [1, 2])) {
-            $TaikhoanAdmin->quyenBinhluan($id, $trang_thai);
-            $_SESSION['success'] = 'Cập nhật trạng thái thành công!';
-        } else {
-            $_SESSION['errors'] = 'ID hoặc trạng thái không hợp lệ';
-        }
-        header('Location: index.php?act=binh-luan');
-        exit();
+    case 'comment-processing':
+        $SanPhamClient->commentProcessing();
         break;
 
     case 'binh-luan':
         $TaikhoanAdmin->danhSachBinhLuan($id);
         break;
+        
 }
