@@ -60,7 +60,7 @@ class AuthController extends Auth
                 exit();
             }
 
-            $login = $this->login($_POST['email'], $_POST['password']);
+            $login = $this->auth($_POST['email'], $_POST['password']);
             if ($login) {
                 $_SESSION['user'] = $login;
                 $_SESSION['success'] = 'Đăng Nhập Thành Công';

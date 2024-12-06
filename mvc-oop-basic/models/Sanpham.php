@@ -45,5 +45,10 @@ require_once '../Connect/connect.php';
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC); 
    }
+   public function search($keyword){
+     $sql = 'SELECT *FROM san_phams WHERE lower(ten_san_pham) like? lower(?)'; 
+     $stmt = $this->connect()->prepare($sql);
+     $stmt->execute(['%' . $keyword . '%']);
+   }
    }
 ?>

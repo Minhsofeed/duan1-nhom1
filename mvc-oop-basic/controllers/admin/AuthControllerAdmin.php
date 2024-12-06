@@ -1,7 +1,26 @@
 <?php
 require_once '../models/Auth.php';
 class AuthControllerAdmin extends Auth
+
 {
+    public function isAdmin() {
+       
+        if (isset($_SESSION['user']) && $_SESSION['user']['chuc_vu_id'] == 1) {
+            return true;
+        }
+        return false;
+    }
+
+   
+    public function middleware() {
+        if (!$this->isAdmin()) {
+            $_SESSION['errors'] = 'Bạn không có quyền truy cập';
+            header('Location: index.php?act=trang-chu');
+            exit(); 
+        }
+        return true; // Nếu là admin, cho phép tiếp tục
+    }
+
     public function logins()
     {
 

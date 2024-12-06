@@ -27,7 +27,7 @@ class Cart extends connect
         }
     }
 
-    // Lấy chi tiết giỏ hàng
+
     public function getDetailGioHang($id)
     {
         try {
@@ -48,7 +48,7 @@ class Cart extends connect
         }
     }
 
-    // Thêm mới giỏ hàng
+  
     public function addGioHang($id)
     {
         try {
@@ -60,7 +60,6 @@ class Cart extends connect
         }
     }
 
-    // Cập nhật số lượng sản phẩm trong giỏ hàng
     public function updateSoLuong($gio_hang_id, $san_pham_id, $so_luong)
     {
         try {
@@ -76,7 +75,7 @@ class Cart extends connect
         }
     }
 
-    // Thêm sản phẩm vào chi tiết giỏ hàng
+  
     public function addDetailGioHang($gio_hang_id, $san_pham_id, $so_luong)
     {
         try {
@@ -151,28 +150,7 @@ class Cart extends connect
             echo "Lỗi" . $e->getMessage();
         }
     }
-    // public function listHisDonHang($id)
-    // {
-    //     try {
-    //         $sql = 'SELECT 
-    //                 don_hangs.id AS don_hang_id,
-    //                 don_hangs.tai_khoan_id,
-    //                 tai_khoans.ho_ten,
-    //                 trang_thai_don_hangs.ten_trang_thai,
-    //                 chi_tiet_don_hangs.so_luong
-    //             FROM don_hangs
-    //             JOIN trang_thai_don_hangs ON don_hangs.trang_thai_id = trang_thai_don_hangs.id
-    //             JOIN chi_tiet_don_hangs ON don_hangs.id = chi_tiet_don_hangs.don_hang_id
-    //             JOIN tai_khoans ON don_hangs.tai_khoan_id = tai_khoans.id
-    //             WHERE don_hangs.tai_khoan_id = ?';
-
-    //         $stmt = $this->connect()->prepare($sql);
-    //         $stmt->execute([$id]);
-    //         return $stmt->fetchAll();
-    //     } catch (Exception $e) {
-    //         echo "Lỗi: " . $e->getMessage();
-    //     }
-    // }
+    
 
     
 }

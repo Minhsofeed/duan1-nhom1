@@ -65,8 +65,36 @@ class DonHang extends Connect
     {
         $sql = 'UPDATE don_hangs SET trang_thai_id =? WHERE id=?';
         $stmt = $this->connect()->prepare($sql);
-        // $a= $stmt->execute([$id, $trang_thai_id]);
-        // var_dump($a);die();
         return $stmt->execute([$trang_thai_id, $id]);
     }
+    public function tongDoanhThu()
+    {
+        $sql = 'SELECT SUM(tong_tien) as tong_doanh_thu FROM don_hangs';
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return isset($result['tong_doanh_thu']) ? $result['tong_doanh_thu'] : 0;
+    }
+
+    public function soDonHang()
+    {
+        $sql = "SELECT COUNT(*) AS so_don_hang FROM don_hangs";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+     
+        return isset($result['so_don_hang']) ? $result['so_don_hang'] : 0;
+    }
+
+    public function soKhachHang()
+    {
+        $sql = "SELECT COUNT(*) AS so_luong_khach_hang FROM tai_khoans WHERE chuc_vu_id = 2;";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return isset($result['so_khach_hang']) ? $result['so_khach_hang'] : 0;
+    }
+
+   
 }
